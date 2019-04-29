@@ -34,7 +34,8 @@ RUN \
     apt-get install -y \
       nodejs \
       npm \
-      git
+      git \
+      mysql-client
 
 RUN \
     apt-get install -y \
@@ -51,6 +52,7 @@ COPY build/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY build/nginx.conf /etc/nginx/sites-enabled/default
 COPY build/php.ini /etc/php/7.0/fpm/php.ini
 
+ADD db /db/
 ADD app /var/www/app/
 ADD public /var/www/public/
 
