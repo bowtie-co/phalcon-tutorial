@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    build: .
+    ports:
+      - 8888:80
+    volumes:
+      - ./app:/var/www/app
+      - ./public:/var/www/public
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASS: password
+      DATABASE_NAME: tutorial1
+    depends_on:
+      - db
+
+volumes:
+  db:
