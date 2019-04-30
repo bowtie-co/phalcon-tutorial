@@ -2,15 +2,19 @@
 
 ### Quick Start
 
-Start up local dev services
+Build images
+
+```bash
+docker-compose build
+```
+
+Start local dev services
 
 ```bash
 docker-compose up
 ```
 
-Create database and example table
+Visit local dev instance
 
-```bash
-docker-compose run app /db/seed.sh
-```
+[http://localhost:8888](http://localhost:888)
 

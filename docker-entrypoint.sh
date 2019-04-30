@@ -80,10 +80,10 @@ fi
 if [[ "$APP_ENV" == "development" ]]; then
   log "App is running in development, attempt to initialize database ..."
 
-  mysql -h ${DATABASE_HOST} -u root -p${MYSQL_ROOT_PASSWORD} -e "set @@global.sql_mode = '';"
+  mysql -h ${DATABASE_HOST} -P ${DATABASE_PORT} -u root -p${MYSQL_ROOT_PASSWORD} -e "set @@global.sql_mode = '';"
   (\
-    mysql -h ${DATABASE_HOST} -u root -p${MYSQL_ROOT_PASSWORD} -e "create database ${DATABASE_NAME}" \
-    && mysql -h ${DATABASE_HOST} -u root -p${MYSQL_ROOT_PASSWORD} ${DATABASE_NAME} < /db/${APP_ENV}.seed.sql\
+    mysql -h ${DATABASE_HOST} -P ${DATABASE_PORT} -u root -p${MYSQL_ROOT_PASSWORD} -e "create database ${DATABASE_NAME}" \
+    && mysql -h ${DATABASE_HOST} -P ${DATABASE_PORT} -u root -p${MYSQL_ROOT_PASSWORD} ${DATABASE_NAME} < /db/${APP_ENV}.seed.sql\
   ) || log "Using existing DB: ${DATABASE_NAME} | Reset this by running 'docker volume rm phalcontutorial_db'"
 fi
 
