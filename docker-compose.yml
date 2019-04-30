@@ -16,11 +16,6 @@ services:
     volumes:
       - ./app:/var/www/app
       - ./public:/var/www/public
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USER: root
-      DATABASE_PASS: password
-      DATABASE_NAME: tutorial1
     depends_on:
       - db
 
